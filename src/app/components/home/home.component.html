@@ -1,42 +1,73 @@
-<div class="row">
-  <form class="col s8" [formGroup]="infoForm" (ngSubmit)="onSubmitForm()">
-    First name:
-    <input formControlName="firstName" type="text"> Last name:
-    <input formControlName="lastName" type="text"> Phone number:
-    <input type="text"> Biography:
-    <textarea rows="10" cols="45" name="text" class="materialize-textarea"></textarea>
-    <section>
-      Marital status:
-      <ul>
-        <li>
-          <input class="with-gap" name="group1" type="radio" id="test3" value="married" />
-          <label for="test3">Married</label>
-        </li>
-        <li>
-          <input class="with-gap" name="group1" type="radio" id="test4" value="unmarried" />
-          <label for="test4">Unmarried</label>
-        </li>
-      </ul>
-    </section>
-    <section formArrayName="visitedСountries">
-      Visited countries:
-      <ul>
-        <li *ngFor="let item of visitedСountriesControls.controls; let i = index">
-          <input formControlName="{{i}}" type="text">
-          <button type="button" title="Remove Country" class="btn waves-light waves-effect" (click)="onRemoveVisitedCountries(i)">X</button>
-        </li>
-      </ul>
-      <button type="button" class="btn waves-light waves-effect" (click) = "onAddVisitedCountries()">Add Country</button>
-    </section>
-    <button 
-    type="submit" 
-    class="btn waves-light waves-effect"
-    >Submit</button>
-    <button
-    type="button" 
-    class="btn waves-light waves-effect" 
-    (click)="onResetForm()"
-    >Reset </button>
-  </form>
-  <debug-panel [data]="infoForm.value"></debug-panel>
+<div class="container">
+  <div class="row">
+    <h1>About You</h1>
+    <form class="col s12" [formGroup]="infoForm" (ngSubmit)="onSubmitForm()">
+      <p class="title">First name:</p>
+      <input formControlName="firstName" type="text"> 
+      <p class="title">Last name:</p>
+      <input formControlName="lastName" type="text"> 
+      <p class="title">Email:</p>
+      <input formControlName="email" type="email"> 
+      <p class="title">Phone number:</p>
+      <input formControlName="phoneNumber" type="text"> 
+      <p class="title">Biography:</p>
+      <textarea formControlName="bio" rows="10" cols="45" name="text" class="materialize-textarea"></textarea>
+      <section>
+          <p class="title">Marital status:</p>
+        <ul>
+          <li>
+            <input class="with-gap" formControlName="maritalStatus" type="radio" id="test3" value="married" />
+            <label for="test3">Married</label>
+          </li>
+          <li>
+            <input class="with-gap" formControlName="maritalStatus" type="radio" id="test4" value="unmarried" />
+            <label for="test4">Unmarried</label>
+          </li>
+        </ul>
+      </section>
+      <section formArrayName="visitedСountries">
+          <p class="title"> Visited countries:</p>
+        <ul>
+          <li *ngFor="let item of infoForm.get('visitedСountries').value; let i = index" [formGroupName]="i" class="inputCountry">
+            <!-- <li [formGroupName]="0"> -->
+            <input formControlName="name" type="text">
+            <button type="button" title="Remove Country" class="btn waves-light waves-effect" (click)="onRemoveVisitedCountries(i)">X</button>
+          </li>
+        </ul>
+        <button type="button" class="btn waves-light waves-effect" (click)="onAddVisitedCountries()">Add Country</button>
+      </section>
+      <section formGroupName="musicStyle">
+          <p class="title">Your favorite music style:</p>
+        <ul>
+          <li>
+            <input formControlName="rok" type="checkbox" id="rok">
+            <label for="rok">Rok</label>
+          </li>
+          <li>
+            <input formControlName="pop" type="checkbox" id="pop">
+            <label for="pop">Pop</label>
+          </li>
+          <li>
+            <input formControlName="jazz" type="checkbox" id="jazz">
+            <label for="jazz">Jazz</label>
+          </li>
+          <li>
+            <input formControlName="funk" type="checkbox" id="funk">
+            <label for="funk">Funk</label>
+          </li>
+          <li>
+            <input formControlName="rap" type="checkbox" id="rap">
+            <label for="rap">Rap</label>
+          </li>
+        </ul>
+      </section>
+      <section>
+          <p class="title">Your favorite color:</p>
+        <input formControlName="color" type="color">
+      </section>
+      <button type="submit" class="btn waves-light waves-effect">Submit</button>
+      <button type="button" class="btn waves-light waves-effect" (click)="onResetForm()">Reset </button>
+    </form>
+    <debug-panel [data]="infoForm.value"></debug-panel>
+  </div>
 </div>

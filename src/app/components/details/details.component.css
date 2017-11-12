@@ -4,7 +4,9 @@
   :host.has-content {
     display: block;
     background-color: rgba(38, 165, 154, 0.7);
+    color: #ffffff;
     position: fixed;
+    z-index: 10;
     top: 0;
     right: 0;
   }
@@ -22,7 +24,7 @@
     width: 7.6em;
     padding: .4em;
     line-height: 1.3em;
-    color: #ffffff;
+    color: #ffffff!important;
   }
   label:before {
     content: "show debug";
