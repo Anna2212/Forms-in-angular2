@@ -1,0 +1,6 @@
+<label for="debugToggle">
+  <input id="debugToggle" type="checkbox" (change)="isVisible = !isVisible;onSaveState()">
+</label>
+<div>
+  <pre>{{ data | json }}</pre>
+</div>

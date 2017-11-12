@@ -1,0 +1,42 @@
+<div class="row">
+  <form class="col s8" [formGroup]="infoForm" (ngSubmit)="onSubmitForm()">
+    First name:
+    <input formControlName="firstName" type="text"> Last name:
+    <input formControlName="lastName" type="text"> Phone number:
+    <input type="text"> Biography:
+    <textarea rows="10" cols="45" name="text" class="materialize-textarea"></textarea>
+    <section>
+      Marital status:
+      <ul>
+        <li>
+          <input class="with-gap" name="group1" type="radio" id="test3" value="married" />
+          <label for="test3">Married</label>
+        </li>
+        <li>
+          <input class="with-gap" name="group1" type="radio" id="test4" value="unmarried" />
+          <label for="test4">Unmarried</label>
+        </li>
+      </ul>
+    </section>
+    <section formArrayName="visitedСountries">
+      Visited countries:
+      <ul>
+        <li *ngFor="let item of visitedСountriesControls.controls; let i = index">
+          <input formControlName="{{i}}" type="text">
+          <button type="button" title="Remove Country" class="btn waves-light waves-effect" (click)="onRemoveVisitedCountries(i)">X</button>
+        </li>
+      </ul>
+      <button type="button" class="btn waves-light waves-effect" (click) = "onAddVisitedCountries()">Add Country</button>
+    </section>
+    <button 
+    type="submit" 
+    class="btn waves-light waves-effect"
+    >Submit</button>
+    <button
+    type="button" 
+    class="btn waves-light waves-effect" 
+    (click)="onResetForm()"
+    >Reset </button>
+  </form>
+  <debug-panel [data]="infoForm.value"></debug-panel>
+</div>
